@@ -10,6 +10,14 @@
       "StackName": "amplify-wothtoolboxawsamplif-dev-181152",
       "StackId": "arn:aws:cloudformation:us-east-2:992382459313:stack/amplify-wothtoolboxawsamplif-dev-181152/46cf1a90-cac5-11ee-85ef-06fd1fbcfff1",
       "AmplifyAppId": "d2pbsvfhx3jo03"
+    },
+    "categories": {
+      "hosting": {
+        "amplifyhosting": {
+          "appId": "d2pbsvfhx3jo03",
+          "type": "cicd"
+        }
+      }
     }
   }
 }
