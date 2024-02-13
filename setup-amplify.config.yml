@@ -4,9 +4,9 @@ Resources:
     Properties:
       Name: WothAmplifyApp
       Repository: https://github.com/khang859/woth-toolbox-aws-amplify
-      EnvironmentVariables:
-        - Name: ENV_VAR_NAME
-          Value: value
+      # EnvironmentVariables:
+      #   - Name: ENV_VAR_NAME
+      #     Value: value
       BuildSpec: |
         version: 1
         frontend:
