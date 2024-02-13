@@ -327,3 +327,4 @@ Due to it growing in size application's version history has been moved to
 project's wiki page and can be found here:
 
 https://github.com/codeaid/woth-toolbox/wiki/Changelog
+
