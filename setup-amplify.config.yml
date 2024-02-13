@@ -4,6 +4,7 @@ Resources:
     Properties:
       Name: WothAmplifyApp
       Repository: https://github.com/khang859/woth-toolbox-aws-amplify
+      OAuthToken: '{{resolve:secretsmanager:woth-github-token:SecretString}}'
       # EnvironmentVariables:
       #   - Name: ENV_VAR_NAME
       #     Value: value
