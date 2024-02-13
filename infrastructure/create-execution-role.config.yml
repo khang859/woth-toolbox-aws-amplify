@@ -1,0 +1,50 @@
+Resources:
+  CloudFormationExecutionRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: cloudformation.amazonaws.com
+            Action: sts:AssumeRole
+      Policies:
+        - PolicyName: AllowSecretsManagerAccess
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: Allow
+                Action: secretsmanager:GetSecretValue
+                Resource: !Sub arn:aws:secretsmanager:${AWS::Region}:${AWS::AccountId}:secret:woth-github-token-*
+        - PolicyName: AllowIAMRolePolicyManagement
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: Allow
+                Action:
+                  - iam:PutRolePolicy
+                  - iam:GetRole
+                  - iam:CreateRole
+                  - iam:DeleteRolePolicy
+                  - iam:DeleteRole
+                  - iam:AttachRolePolicy
+                  - iam:DetachRolePolicy
+                  - iam:ListAttachedRolePolicies
+                  - iam:UpdateAssumeRolePolicy
+                Resource: !Sub "arn:aws:iam::${AWS::AccountId}:role/CloudFormation-*"
+              - Effect: Allow
+                Action:
+                  - amplify:CreateApp
+                  - amplify:DeleteApp
+                  - amplify:UpdateApp
+                  - amplify:GetApp
+                  - amplify:ListApps
+                  - amplify:ListTagsForResource
+                Resource: !Sub "arn:aws:amplify:${AWS::Region}:${AWS::AccountId}:apps/*"
+Outputs:
+  CloudFormationExecutionRoleARN:
+    Description: "The ARN of the IAM role created for CloudFormation execution"
+    Value: !GetAtt CloudFormationExecutionRole.Arn
+    Export:
+      Name: CloudFormationExecutionRoleARN

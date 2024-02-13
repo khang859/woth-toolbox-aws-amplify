@@ -17,6 +17,22 @@ jobs:
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: ${{ secrets.AWS_REGION }}
 
-    - name: Deploy CloudFormation Stack
+    - name: Deploy CloudFormation Execution Role Stack
       run: |
-        aws cloudformation deploy --template-file setup-amplify.config.yml --stack-name woth-amplify --capabilities CAPABILITY_IAM CAPABILITY_NAMED_IAM CAPABILITY_AUTO_EXPAND
+        aws cloudformation deploy \
+          --template-file infrastructure/create-execution-role.config.yml \
+          --stack-name woth-amplify-execution-role \
+          --capabilities CAPABILITY_IAM CAPABILITY_NAMED_IAM CAPABILITY_AUTO_EXPAND
+
+    - name: Get stack output
+      run: |
+        echo $(aws cloudformation describe-stacks --stack-name woth-amplify-execution-role --query 'Stacks[0].Outputs' --output json) > execution_role_stack_output.json
+        execution_arn=$(jq -r '.[] | select(.OutputKey=="CloudFormationExecutionRoleARN") | .OutputValue' execution_role_stack_output.json)
+
+    - name: Deploy Amplify CloudFormation Stack
+      run: |
+        aws cloudformation deploy \
+          --template-file infrastructure/setup-amplify.config.yml \
+          --stack-name woth-amplify \
+          --capabilities CAPABILITY_IAM CAPABILITY_NAMED_IAM CAPABILITY_AUTO_EXPAND \
+          --role-arn $execution_arn
