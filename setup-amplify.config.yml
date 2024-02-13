@@ -1,0 +1,27 @@
+Resources:
+  WothAmplifyApp:
+    Type: AWS::Amplify::App
+    Properties:
+      Name: WothAmplifyApp
+      Repository: https://github.com/khang859/woth-toolbox-aws-amplify
+      EnvironmentVariables:
+        - Name: ENV_VAR_NAME
+          Value: value
+      BuildSpec: |
+        version: 1
+        frontend:
+          phases:
+            preBuild:
+              commands:
+                - nvm install 20
+                - nvm use 20
+                - yarn install --frozen-lockfile
+            build:
+              commands:
+                - yarn run build
+          artifacts:
+            baseDirectory: .next
+            files:
+              - '**/*'
+          cache:
+            paths: ['node_modules/**/*']
