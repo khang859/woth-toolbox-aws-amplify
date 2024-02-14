@@ -1,6 +1,6 @@
 export type AmplifyDependentResourcesAttributes = {
   "auth": {
-    "wothtoolboxawsamplifa2a29ca8": {
+    "wothtoolboxawsamplifd33dce73": {
       "AppClientID": "string",
       "AppClientIDWeb": "string",
       "IdentityPoolId": "string",
