@@ -147,6 +147,12 @@
   white-space: nowrap;
 }
 
+.ToolbarSignOut {
+  margin: 0.8rem;
+  letter-spacing: 0.1rem;
+  text-transform: uppercase;
+}
+
 @media (max-width: 1024px) {
   .ToolbarAction {
     min-width: 5em;

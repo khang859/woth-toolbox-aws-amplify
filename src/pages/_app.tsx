@@ -1,4 +1,4 @@
-import { Authenticator } from '@aws-amplify/ui-react';
+import { Authenticator, Button } from '@aws-amplify/ui-react';
 import { Amplify } from 'aws-amplify';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
@@ -49,15 +49,16 @@ const App = (props: AppProps) => {
           />
         </Head>
         <Authenticator>
-          {({ signOut, user }) => (
+          {user => (
             <HuntingMapTypeProvider value={mapTypeManager}>
               <AnimalMarkerProvider value={animalManager}>
                 <CustomMarkerProvider value={customManager}>
                   <SettingsProvider value={settingsManager}>
                     <TutorialProvider value={tutorialManager}>
-                      <button onClick={signOut}>Sign out</button>
                       <Notifications />
-                      <Toolbox {...props} />
+                      <Authenticator.Provider>
+                        <Toolbox {...props} />
+                      </Authenticator.Provider>
                     </TutorialProvider>
                   </SettingsProvider>
                 </CustomMarkerProvider>
