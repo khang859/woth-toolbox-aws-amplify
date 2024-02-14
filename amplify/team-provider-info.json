@@ -17,6 +17,9 @@
           "appId": "d2pbsvfhx3jo03",
           "type": "cicd"
         }
+      },
+      "auth": {
+        "wothtoolboxawsamplif2e88b783": {}
       }
     }
   }
