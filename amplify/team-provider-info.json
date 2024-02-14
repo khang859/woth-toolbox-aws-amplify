@@ -22,5 +22,30 @@
         "wothtoolboxawsamplif2e88b783": {}
       }
     }
+  },
+  "prod": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-wothtoolboxawsamplif-prod-211305-authRole",
+      "UnauthRoleArn": "arn:aws:iam::992382459313:role/amplify-wothtoolboxawsamplif-prod-211305-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::992382459313:role/amplify-wothtoolboxawsamplif-prod-211305-authRole",
+      "Region": "us-east-2",
+      "DeploymentBucketName": "amplify-wothtoolboxawsamplif-prod-211305-deployment",
+      "UnauthRoleName": "amplify-wothtoolboxawsamplif-prod-211305-unauthRole",
+      "StackName": "amplify-wothtoolboxawsamplif-prod-211305",
+      "StackId": "arn:aws:cloudformation:us-east-2:992382459313:stack/amplify-wothtoolboxawsamplif-prod-211305/9746e3e0-cade-11ee-b2af-021a62543d1b",
+      "AmplifyAppId": "d2pbsvfhx3jo03"
+    },
+    "categories": {
+      "auth": {
+        "wothtoolboxawsamplif2e88b783": {},
+        "wothtoolboxawsamplifd33dce73": {}
+      },
+      "hosting": {
+        "amplifyhosting": {
+          "appId": "d2pbsvfhx3jo03",
+          "type": "cicd"
+        }
+      }
+    }
   }
 }
