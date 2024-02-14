@@ -1,9 +1,9 @@
 import { Authenticator, Button } from '@aws-amplify/ui-react';
 import { Amplify } from 'aws-amplify';
+import awsExports from 'aws-exports.js';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
 import { StrictMode } from 'react';
-import awsExports from 'aws-exports.js';
 import { App as Toolbox } from 'components/App';
 import { Notifications } from 'components/Notifications';
 import {

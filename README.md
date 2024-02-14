@@ -1,5 +1,21 @@
 ![Way Of The Hunter Logo](docs/woth-logo.png)
 
+## Host on your Amplify
+
+1. Install and setup Amplify with the Doc https://docs.amplify.aws/react/start/getting-started/installation/#configure-the-amplify-cli
+2. Clone this repo and deploy to your own repository.
+3. Run `amplify add hosting`, this will bring you to the Amplify UI to create your front-end
+4. Connect the new front-end to your repo, follow the UI steps.
+5. The initial build will most likely fail for the front-end, if you didn't select the latest docker image.
+6. The image should be `Amazon Linux:2023`, this image allows us to use node >= 18.17, its the requirement for this project. 
+  1. You can change this setting via the left side navigation, under `Build settings`, scroll do the `Build image settings` section.
+5. Run `amplify add auth` to configure Cognito for authentications.
+6. Add and commit your amplify settings, and push it to your connected branch, this should trigger a build on amplify and hopefully deploys your app.
+7. Navigate to your new application url, create a new account and login to see the WoTH app.
+
+
+## Overview
+
 This interactive web application contains a suite of tools that can be used
 while playing [Way Of The Hunter](https://store.steampowered.com/app/1288320).
 
