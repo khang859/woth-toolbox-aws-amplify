@@ -1,6 +1,9 @@
+import { Authenticator } from '@aws-amplify/ui-react';
+import { Amplify } from 'aws-amplify';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
 import { StrictMode } from 'react';
+import awsExports from 'aws-exports.js';
 import { App as Toolbox } from 'components/App';
 import { Notifications } from 'components/Notifications';
 import {
@@ -20,6 +23,9 @@ import {
 import 'modern-normalize/modern-normalize.css';
 import 'react-toastify/dist/ReactToastify.css';
 import 'styles/global.css';
+import '@aws-amplify/ui-react/styles.css';
+
+Amplify.configure(awsExports);
 
 const App = (props: AppProps) => {
   // Retrieve map type switching context and the currently active map type
@@ -42,19 +48,23 @@ const App = (props: AppProps) => {
             content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover, user-scalable=no, shrink-to-fit=no"
           />
         </Head>
-
-        <HuntingMapTypeProvider value={mapTypeManager}>
-          <AnimalMarkerProvider value={animalManager}>
-            <CustomMarkerProvider value={customManager}>
-              <SettingsProvider value={settingsManager}>
-                <TutorialProvider value={tutorialManager}>
-                  <Notifications />
-                  <Toolbox {...props} />
-                </TutorialProvider>
-              </SettingsProvider>
-            </CustomMarkerProvider>
-          </AnimalMarkerProvider>
-        </HuntingMapTypeProvider>
+        <Authenticator>
+          {({ signOut, user }) => (
+            <HuntingMapTypeProvider value={mapTypeManager}>
+              <AnimalMarkerProvider value={animalManager}>
+                <CustomMarkerProvider value={customManager}>
+                  <SettingsProvider value={settingsManager}>
+                    <TutorialProvider value={tutorialManager}>
+                      <button onClick={signOut}>Sign out</button>
+                      <Notifications />
+                      <Toolbox {...props} />
+                    </TutorialProvider>
+                  </SettingsProvider>
+                </CustomMarkerProvider>
+              </AnimalMarkerProvider>
+            </HuntingMapTypeProvider>
+          )}
+        </Authenticator>
       </StrictMode>
     </>
   );
