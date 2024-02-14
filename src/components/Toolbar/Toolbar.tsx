@@ -1,3 +1,4 @@
+import { Button, useAuthenticator } from '@aws-amplify/ui-react';
 import clsx from 'clsx';
 import { useRouter } from 'next/router';
 import { useCallback, useEffect, useMemo, useState } from 'react';
@@ -31,6 +32,8 @@ import styles from './Toolbar.module.css';
 
 export const Toolbar = (props: ToolbarProps) => {
   const { subtitle, title } = props;
+
+  const { user, signOut } = useAuthenticator(context => [context.user]);
 
   // Flag indicating whether the map list menu is visible
   const [mapMenuVisible, setMapMenuVisible] = useState(false);
@@ -290,6 +293,11 @@ export const Toolbar = (props: ToolbarProps) => {
           >
             <RiSettings2Line />
           </IconButton>
+          <div className={styles.ToolbarSignOut}>
+            <Button variation="destructive" size="small" onClick={signOut}>
+              Sign out
+            </Button>
+          </div>
         </div>
       </div>
 
